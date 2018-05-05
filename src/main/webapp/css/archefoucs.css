@@ -1,0 +1,20 @@
+﻿
+.header { width: 100%; max-width: 1920px; margin: 0 auto; position: relative; }
+.ggLoading, .ggLoading2 { background-image: url(../images/nav.png); }
+.header { height: 500px; }
+.gg { width: 100%; height: 500px; position: relative; z-index: 1; overflow: hidden; margin: 0 auto; background: #d3d3d3}
+.ggLoading { position: absolute; left: 40%; top: 200px; width: 325px; text-align: center; height: 56px; line-height: 56px; color: #9c9c9c; }
+.ggLoading2 { width: 330px; height: 56px;  }
+.ggLoading em { font-weight: bold; }
+.ggs { width: 200%; height: 500px; left: -50%; top: 0; position: absolute; }
+.ggBox { width: 1920px; height: 500px; margin: 0 auto; }
+.ggBox a { display: block; width: 1920px; height: 500px; position: absolute; z-index: 1; opacity: 0.1; }
+.ggBox img { display: block; width: 1920px; height: 500px; }
+.ggb { position: absolute; width: 100%; left: 0; bottom: 0; height: 60px; z-index: 4; background:url(../images/b-png2.png) repeat;}
+
+.ggBtns { width: 1140px; height: 65px; margin: 0 auto;}
+.ggBtns a { float: left; display: block; width: 198px; height: 53px; text-align: center; color: #e4e1e1; font-size: 14px; line-height: 22px;  position: relative; top: -5px; outline: none;cursor: pointer;padding:12px 15px 0 15px}
+.ggBtns a:hover { color: #fff; }
+.ggBtns a:focus { outline: none; }
+.ggBtns a.ggOn { color: #fff; background:url(../images/b-png.png) no-repeat; }
+

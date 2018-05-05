@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrg.ixd.dao.ForderMapper">
+	<resultMap id="BaseResultMap" type="com.zrg.ixd.bean.Forder">
+		<id column="oid" jdbcType="INTEGER" property="oid" />
+		<result column="uid" jdbcType="INTEGER" property="uid" />
+		<result column="odate" jdbcType="DATE" property="odate" />
+		<result column="oprice" jdbcType="DOUBLE" property="oprice" />
+		<result column="state" jdbcType="INTEGER" property="state" />
+		<result column="oadress" jdbcType="VARCHAR" property="oadress" />
+	</resultMap>
+
+	<resultMap id="selectWithDetilMap"
+		type="com.zrg.ixd.bean.Forder">
+		<id column="oid" jdbcType="INTEGER" property="oid" />
+		<result column="uid" jdbcType="INTEGER" property="uid" />
+		<result column="odate" jdbcType="DATE" property="odate" />
+		<result column="oprice" jdbcType="DOUBLE" property="oprice" />
+		<result column="state" jdbcType="INTEGER" property="state" />
+		<result column="oadress" jdbcType="VARCHAR" property="oadress" />
+		<!-- 一对多的关系 -->
+		<!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+		<collection property="odetilLists"
+			ofType="com.zrg.ixd.bean.OrderDetil">
+			<id column="odid" jdbcType="INTEGER" property="odid" />
+			<result column="fid" jdbcType="INTEGER" property="fid" />
+			<result column="oid" jdbcType="INTEGER" property="oid" />
+			<result column="odcount" jdbcType="INTEGER" property="odcount" />
+			<result column="odprice" jdbcType="DOUBLE" property="odprice" />
+		</collection>
+	</resultMap>
+ 
+ 	<select id="getForderWithOdLists"
+		parameterType="java.lang.Integer" resultMap="selectWithDetilMap">
+		select f.*,o.* from forder f,orderdetil o where f.oid=#{oid,jdbcType=INTEGER}
+	</select>
+
+
+
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value"
+										item="listItem" open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		oid, uid, odate, oprice, state, oadress
+	</sql>
+	<select id="selectByExample"
+		parameterType="com.zrg.ixd.bean.ForderExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from forder
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from forder
+		where oid = #{oid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from forder
+		where oid = #{oid,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.zrg.ixd.bean.ForderExample">
+		delete from forder
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.zrg.ixd.bean.Forder">
+		insert into forder (oid, uid, odate,
+		oprice, state, oadress
+		)
+		values (#{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		#{odate,jdbcType=DATE},
+		#{oprice,jdbcType=DOUBLE}, #{state,jdbcType=INTEGER}, #{oadress,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.zrg.ixd.bean.Forder">
+		insert into forder
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="oid != null">
+				oid,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="odate != null">
+				odate,
+			</if>
+			<if test="oprice != null">
+				oprice,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="oadress != null">
+				oadress,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="oid != null">
+				#{oid,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="odate != null">
+				#{odate,jdbcType=DATE},
+			</if>
+			<if test="oprice != null">
+				#{oprice,jdbcType=DOUBLE},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+			<if test="oadress != null">
+				#{oadress,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.zrg.ixd.bean.ForderExample"
+		resultType="java.lang.Long">
+		select count(*) from forder
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update forder
+		<set>
+			<if test="record.oid != null">
+				oid = #{record.oid,jdbcType=INTEGER},
+			</if>
+			<if test="record.uid != null">
+				uid = #{record.uid,jdbcType=INTEGER},
+			</if>
+			<if test="record.odate != null">
+				odate = #{record.odate,jdbcType=DATE},
+			</if>
+			<if test="record.oprice != null">
+				oprice = #{record.oprice,jdbcType=DOUBLE},
+			</if>
+			<if test="record.state != null">
+				state = #{record.state,jdbcType=INTEGER},
+			</if>
+			<if test="record.oadress != null">
+				oadress = #{record.oadress,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update forder
+		set oid = #{record.oid,jdbcType=INTEGER},
+		uid = #{record.uid,jdbcType=INTEGER},
+		odate = #{record.odate,jdbcType=DATE},
+		oprice = #{record.oprice,jdbcType=DOUBLE},
+		state = #{record.state,jdbcType=INTEGER},
+		oadress = #{record.oadress,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.zrg.ixd.bean.Forder">
+		update forder
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="odate != null">
+				odate = #{odate,jdbcType=DATE},
+			</if>
+			<if test="oprice != null">
+				oprice = #{oprice,jdbcType=DOUBLE},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+			<if test="oadress != null">
+				oadress = #{oadress,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where oid = #{oid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.zrg.ixd.bean.Forder">
+		update forder
+		set uid = #{uid,jdbcType=INTEGER},
+		odate = #{odate,jdbcType=DATE},
+		oprice = #{oprice,jdbcType=DOUBLE},
+		state = #{state,jdbcType=INTEGER},
+		oadress = #{oadress,jdbcType=VARCHAR}
+		where oid = #{oid,jdbcType=INTEGER}
+	</update>
+</mapper>

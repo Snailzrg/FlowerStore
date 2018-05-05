@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrg.ixd.dao.FlowerImgMapper">
+  <resultMap id="BaseResultMap" type="com.zrg.ixd.bean.FlowerImg">
+    <id column="Fiid" jdbcType="INTEGER" property="fiid" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="fisrc" jdbcType="VARCHAR" property="fisrc" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Fiid, fid, fisrc
+  </sql>
+  <select id="selectByExample" parameterType="com.zrg.ixd.bean.FlowerImgExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flowerimg
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from flowerimg
+    where Fiid = #{fiid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from flowerimg
+    where Fiid = #{fiid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zrg.ixd.bean.FlowerImgExample">
+    delete from flowerimg
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zrg.ixd.bean.FlowerImg">
+    insert into flowerimg (Fiid, fid, fisrc
+      )
+    values (#{fiid,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{fisrc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zrg.ixd.bean.FlowerImg">
+    insert into flowerimg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fiid != null">
+        Fiid,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="fisrc != null">
+        fisrc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fiid != null">
+        #{fiid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="fisrc != null">
+        #{fisrc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zrg.ixd.bean.FlowerImgExample" resultType="java.lang.Long">
+    select count(*) from flowerimg
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update flowerimg
+    <set>
+      <if test="record.fiid != null">
+        Fiid = #{record.fiid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fid != null">
+        fid = #{record.fid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fisrc != null">
+        fisrc = #{record.fisrc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update flowerimg
+    set Fiid = #{record.fiid,jdbcType=INTEGER},
+      fid = #{record.fid,jdbcType=INTEGER},
+      fisrc = #{record.fisrc,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zrg.ixd.bean.FlowerImg">
+    update flowerimg
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="fisrc != null">
+        fisrc = #{fisrc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Fiid = #{fiid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zrg.ixd.bean.FlowerImg">
+    update flowerimg
+    set fid = #{fid,jdbcType=INTEGER},
+      fisrc = #{fisrc,jdbcType=VARCHAR}
+    where Fiid = #{fiid,jdbcType=INTEGER}
+  </update>
+</mapper>

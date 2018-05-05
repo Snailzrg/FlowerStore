@@ -1,0 +1,44 @@
+
+
+.pro_detail_left .jqzoom{
+	position:relative;
+	padding:0px;
+	cursor:pointer;
+	border:1px solid #ccc;
+	width:475px;
+	height:460px
+}
+.pro_detail{height:550px}
+.pro_detail_left .jqzoom img{width:475px;height:460px}
+.imgList li{text-align:left;display:inline;cursor:pointer;margin-right:14px}
+.imgList li.last{margin-right:0;margin-left:1px}
+.imgList{text-align:left;margin-top:11px;overflow:hidden}
+.imgList img{padding:1px;border:2px solid #eee;width:58px;height:58px}
+.imgList .on img{border:2px solid #e83426}
+/*jQzoom*/
+div.zoomdiv {
+	z-index:999;
+	position: absolute;
+	top:0px;
+	left:0px;
+	width: 100px;
+	height: 200px;
+	background: #ffffff;
+	border:1px solid #CCCCCC;
+	display:none;
+	text-align: center;
+	overflow: hidden;
+}
+div.jqZoomPup {
+	z-index: 999;
+	visibility: hidden;
+	position: absolute;
+	top:0px;
+	left:0px;
+	border: 1px solid #a3a3a3;
+	background: #ffffff url(../images/search.png) 50% 50%  no-repeat;
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	filter: alpha(Opacity=50);
+}
