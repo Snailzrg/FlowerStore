@@ -11,6 +11,8 @@ public class OrderDetil {
 
     private Double odprice;
 
+    private Double countprice;
+
     public Integer getOdid() {
         return odid;
     }
@@ -49,5 +51,13 @@ public class OrderDetil {
 
     public void setOdprice(Double odprice) {
         this.odprice = odprice;
+    }
+
+    public Double getCountprice() {
+        return countprice;
+    }
+
+    public void setCountprice(Double countprice) {
+        this.countprice = countprice;
     }
 }

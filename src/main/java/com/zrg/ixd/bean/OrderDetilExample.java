@@ -403,6 +403,66 @@ public class OrderDetilExample {
             addCriterion("odprice not between", value1, value2, "odprice");
             return (Criteria) this;
         }
+
+        public Criteria andCountpriceIsNull() {
+            addCriterion("countprice is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceIsNotNull() {
+            addCriterion("countprice is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceEqualTo(Double value) {
+            addCriterion("countprice =", value, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceNotEqualTo(Double value) {
+            addCriterion("countprice <>", value, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceGreaterThan(Double value) {
+            addCriterion("countprice >", value, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceGreaterThanOrEqualTo(Double value) {
+            addCriterion("countprice >=", value, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceLessThan(Double value) {
+            addCriterion("countprice <", value, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceLessThanOrEqualTo(Double value) {
+            addCriterion("countprice <=", value, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceIn(List<Double> values) {
+            addCriterion("countprice in", values, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceNotIn(List<Double> values) {
+            addCriterion("countprice not in", values, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceBetween(Double value1, Double value2) {
+            addCriterion("countprice between", value1, value2, "countprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountpriceNotBetween(Double value1, Double value2) {
+            addCriterion("countprice not between", value1, value2, "countprice");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

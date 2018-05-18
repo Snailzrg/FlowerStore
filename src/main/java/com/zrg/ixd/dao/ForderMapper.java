@@ -28,6 +28,11 @@ public interface ForderMapper {
 
     int updateByPrimaryKey(Forder record);
     
-    //帶訂單詳細表的selecct
-    Forder getForderWithOdLists(Integer oid);
+  //帶訂單詳細表的 用户的订单
+    /* SELECT  t.* ,a.* FROM forder t ,orderdetil a  WHERE t.oid=a.oid  and uid=20*/
+   List<Forder> getAllListsByUser(Integer uid);
+/**
+ *  <!-- 一个用户对应多个订单  一个订单对应多个详单..-->
+ */
+    
 }

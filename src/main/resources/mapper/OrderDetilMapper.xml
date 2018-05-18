@@ -7,6 +7,7 @@
     <result column="oid" jdbcType="INTEGER" property="oid" />
     <result column="odcount" jdbcType="INTEGER" property="odcount" />
     <result column="odprice" jdbcType="DOUBLE" property="odprice" />
+    <result column="countprice" jdbcType="DOUBLE" property="countprice" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    odid, fid, oid, odcount, odprice
+    odid, fid, oid, odcount, odprice, countprice
   </sql>
   <select id="selectByExample" parameterType="com.zrg.ixd.bean.OrderDetilExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.zrg.ixd.bean.OrderDetil">
     insert into orderdetil (odid, fid, oid, 
-      odcount, odprice)
+      odcount, odprice, countprice
+      )
     values (#{odid,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, 
-      #{odcount,jdbcType=INTEGER}, #{odprice,jdbcType=DOUBLE})
+      #{odcount,jdbcType=INTEGER}, #{odprice,jdbcType=DOUBLE}, #{countprice,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zrg.ixd.bean.OrderDetil">
     insert into orderdetil
@@ -123,6 +126,9 @@
       <if test="odprice != null">
         odprice,
       </if>
+      <if test="countprice != null">
+        countprice,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="odid != null">
@@ -139,6 +145,9 @@
       </if>
       <if test="odprice != null">
         #{odprice,jdbcType=DOUBLE},
+      </if>
+      <if test="countprice != null">
+        #{countprice,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -166,6 +175,9 @@
       <if test="record.odprice != null">
         odprice = #{record.odprice,jdbcType=DOUBLE},
       </if>
+      <if test="record.countprice != null">
+        countprice = #{record.countprice,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +189,8 @@
       fid = #{record.fid,jdbcType=INTEGER},
       oid = #{record.oid,jdbcType=INTEGER},
       odcount = #{record.odcount,jdbcType=INTEGER},
-      odprice = #{record.odprice,jdbcType=DOUBLE}
+      odprice = #{record.odprice,jdbcType=DOUBLE},
+      countprice = #{record.countprice,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +210,9 @@
       <if test="odprice != null">
         odprice = #{odprice,jdbcType=DOUBLE},
       </if>
+      <if test="countprice != null">
+        countprice = #{countprice,jdbcType=DOUBLE},
+      </if>
     </set>
     where odid = #{odid,jdbcType=INTEGER}
   </update>
@@ -205,7 +221,8 @@
     set fid = #{fid,jdbcType=INTEGER},
       oid = #{oid,jdbcType=INTEGER},
       odcount = #{odcount,jdbcType=INTEGER},
-      odprice = #{odprice,jdbcType=DOUBLE}
+      odprice = #{odprice,jdbcType=DOUBLE},
+      countprice = #{countprice,jdbcType=DOUBLE}
     where odid = #{odid,jdbcType=INTEGER}
   </update>
 </mapper>

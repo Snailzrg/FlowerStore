@@ -16,15 +16,25 @@
 </head>
 <body class="index">
 <div class="top_ad"><div class="w1200"><a href="#" id="close"></a></div></div>
-
 <div class="top">
-	<div class="w1200">
-		<div class="left">您好，欢迎光临易易城！<a href="#">[登录]</a> <a href="#">[注册]</a></div>
-        <div class="right"><a href="#">我的会员中心</a>|<a href="#">收藏夹</a>|<a href="#">服务中心</a>|<a href="#">在线客服</a>|<a href="#">购物车<b>0</b>件</a></div>
-        <div class="clear"></div>
-    </div>
-</div>
-
+		<div class="w1200">
+			<div class="left">
+				您好，欢迎光临鲜花客！
+				
+				 <c:if test="${User==null}">
+				<a href="view/login.jsp">[登录]</a>
+				</c:if>
+				<a href="view/reg.jsp">[注册]</a>
+				<c:if test="${User!=null}">
+				<a href="${APP_PATH }/dissLord">[注销]</a>
+				</c:if>
+			</div>
+			<div class="right">
+				<a href="member.jsp">我的会员中心</a>|<a href="shopcar.jsp">购物车<b></b>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
 <div class="head">
 	<div class="w1200">
     	<div class="logo"><a href="#"></a></div>
@@ -36,31 +46,20 @@
 						value="搜索" class="sub" />
 				</form>
 				<p>
-					<a href="${APP_PATH }/birth">生日</a>|<a href="${APP_PATH }/wedding">婚礼</a>|<a href="${APP_PATH }/blessing">祝福</a>|
-						<a href="${APP_PATH }/love">爱意表达</a>|<a href="${APP_PATH }/friendShop">友情</a>|<a
-						href="${APP_PATH }/yearMemory">周年纪念</a>
+					<a href="${APP_PATH }/showFlowers?&&ftid=2">生日</a>|<a href="${APP_PATH }/showFlowers?&&ftid=3">婚礼</a>|<a href="${APP_PATH }/showFlowers?&&ftid=4">祝福</a>|
+						<a href="${APP_PATH }/showFlowers?&&ftid=6">友情</a>|<a href="${APP_PATH }/showFlowers?&&ftid=6">周年纪念</a>
 				</p>
 			</div>
         <div class="s_r">
         	<dl>
-            	<dt><p>购物车<span>0</span></p></dt>
-                <dd>客服电话：<b>400-0139-038</b></dd>
+            	<dt><p>购物车<span></span></p></dt>
+                <dd>客服电话：<b>123-4567-890</b></dd>
             </dl>
         </div>
         <div class="clear"></div>
     </div>
 </div>
 
-<div class="menu">
-	<div class="w1200">
-    	<div class="item"><a href="#" class="home">商城首页</a></div>
-        <div class="item"><a href="#">易易特色</a></div>
-        <div class="item"><a href="#">热销产品</a></div>
-        <div class="item"><a href="#">新品上市</a></div>
-        <div class="item"><a href="#">精品推荐</a></div>
-        <div class="item"><a href="#">生活服务</a></div>
-    </div>
-</div>
 
 
 <div class="w1200">
@@ -78,5 +77,29 @@
         <div class="clear"></div>
     </div>
 </div>
+
+<div class="footer">
+	<div class="f_bz">
+    	<div class="w1200">
+            <dl class="dl01">
+                <dt>正品保证</dt>
+                <dd>现摘鲜花 小鲜肉哟</dd>
+            </dl>
+            <dl class="dl02">
+                <dt>你消费 自己买单</dt>
+                <dd>除非长得帅 免单</dd>
+            </dl>
+            <dl class="dl03">
+                <dt>品类丰富</dt>
+                <dd>品类齐全 轻松购物</dd>
+            </dl>
+            <dl class="dl04">
+                <dt>立足长沙</dt>
+                <dd>为您呈现最鲜的鲜花</dd>
+            </dl>
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
 </body>
 </html>

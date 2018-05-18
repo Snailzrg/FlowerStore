@@ -8,34 +8,35 @@
 		<result column="oprice" jdbcType="DOUBLE" property="oprice" />
 		<result column="state" jdbcType="INTEGER" property="state" />
 		<result column="oadress" jdbcType="VARCHAR" property="oadress" />
+		<result column="adid" jdbcType="INTEGER" property="adid" />
 	</resultMap>
 
 	<resultMap id="selectWithDetilMap"
 		type="com.zrg.ixd.bean.Forder">
-		<id column="oid" jdbcType="INTEGER" property="oid" />
-		<result column="uid" jdbcType="INTEGER" property="uid" />
-		<result column="odate" jdbcType="DATE" property="odate" />
-		<result column="oprice" jdbcType="DOUBLE" property="oprice" />
-		<result column="state" jdbcType="INTEGER" property="state" />
-		<result column="oadress" jdbcType="VARCHAR" property="oadress" />
+		<id column="oid" jdbcType="INTEGER" property="oid"/>
+		<result column="uid" jdbcType="INTEGER" property="uid"/>
+		<result column="odate" jdbcType="DATE" property="odate"/>
+		<result column="oprice" jdbcType="DOUBLE" property="oprice"/>
+		<result column="state" jdbcType="INTEGER" property="state"/>
+		<result column="oadress" jdbcType="VARCHAR" property="oadress"/>
+		<result column="adid" jdbcType="INTEGER" property="adid"/>
 		<!-- 一对多的关系 -->
 		<!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
-		<collection property="odetilLists"
-			ofType="com.zrg.ixd.bean.OrderDetil">
+		<collection property="orderdetails" ofType="com.zrg.ixd.bean.OrderDetil">
 			<id column="odid" jdbcType="INTEGER" property="odid" />
 			<result column="fid" jdbcType="INTEGER" property="fid" />
 			<result column="oid" jdbcType="INTEGER" property="oid" />
 			<result column="odcount" jdbcType="INTEGER" property="odcount" />
 			<result column="odprice" jdbcType="DOUBLE" property="odprice" />
+			<result column="countprice" jdbcType="DOUBLE" property="countprice" />
 		</collection>
 	</resultMap>
- 
- 	<select id="getForderWithOdLists"
-		parameterType="java.lang.Integer" resultMap="selectWithDetilMap">
-		select f.*,o.* from forder f,orderdetil o where f.oid=#{oid,jdbcType=INTEGER}
+
+	<select id="getAllListsByUser" parameterType="java.lang.Integer"
+		resultMap="selectWithDetilMap">
+		select t.* ,a.* FROM forder t ,orderdetil a WHERE
+		t.oid=a.oid and t.state>0 and t.uid=#{uid,jdbcType=INTEGER}
 	</select>
-
-
 
 
 	<sql id="Example_Where_Clause">
@@ -53,7 +54,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -85,7 +87,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -103,7 +106,7 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		oid, uid, odate, oprice, state, oadress
+		oid, uid, odate, oprice, state, oadress, adid
 	</sql>
 	<select id="selectByExample"
 		parameterType="com.zrg.ixd.bean.ForderExample"
@@ -141,13 +144,16 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.zrg.ixd.bean.Forder">
-		insert into forder (oid, uid, odate,
-		oprice, state, oadress
-		)
-		values (#{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER},
+		insert into forder (oid, uid,
+		odate,
+		oprice, state, oadress,
+		adid)
+		values (#{oid,jdbcType=INTEGER},
+		#{uid,jdbcType=INTEGER},
 		#{odate,jdbcType=DATE},
-		#{oprice,jdbcType=DOUBLE}, #{state,jdbcType=INTEGER}, #{oadress,jdbcType=VARCHAR}
-		)
+		#{oprice,jdbcType=DOUBLE}, #{state,jdbcType=INTEGER},
+		#{oadress,jdbcType=VARCHAR},
+		#{adid,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective"
 		parameterType="com.zrg.ixd.bean.Forder">
@@ -171,6 +177,9 @@
 			<if test="oadress != null">
 				oadress,
 			</if>
+			<if test="adid != null">
+				adid,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="oid != null">
@@ -190,6 +199,9 @@
 			</if>
 			<if test="oadress != null">
 				#{oadress,jdbcType=VARCHAR},
+			</if>
+			<if test="adid != null">
+				#{adid,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -222,6 +234,9 @@
 			<if test="record.oadress != null">
 				oadress = #{record.oadress,jdbcType=VARCHAR},
 			</if>
+			<if test="record.adid != null">
+				adid = #{record.adid,jdbcType=INTEGER},
+			</if>
 		</set>
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
@@ -230,11 +245,16 @@
 	<update id="updateByExample" parameterType="map">
 		update forder
 		set oid = #{record.oid,jdbcType=INTEGER},
-		uid = #{record.uid,jdbcType=INTEGER},
+		uid =
+		#{record.uid,jdbcType=INTEGER},
 		odate = #{record.odate,jdbcType=DATE},
 		oprice = #{record.oprice,jdbcType=DOUBLE},
-		state = #{record.state,jdbcType=INTEGER},
-		oadress = #{record.oadress,jdbcType=VARCHAR}
+		state =
+		#{record.state,jdbcType=INTEGER},
+		oadress =
+		#{record.oadress,jdbcType=VARCHAR},
+		adid =
+		#{record.adid,jdbcType=INTEGER}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -258,6 +278,9 @@
 			<if test="oadress != null">
 				oadress = #{oadress,jdbcType=VARCHAR},
 			</if>
+			<if test="adid != null">
+				adid = #{adid,jdbcType=INTEGER},
+			</if>
 		</set>
 		where oid = #{oid,jdbcType=INTEGER}
 	</update>
@@ -265,10 +288,14 @@
 		parameterType="com.zrg.ixd.bean.Forder">
 		update forder
 		set uid = #{uid,jdbcType=INTEGER},
-		odate = #{odate,jdbcType=DATE},
+		odate =
+		#{odate,jdbcType=DATE},
 		oprice = #{oprice,jdbcType=DOUBLE},
-		state = #{state,jdbcType=INTEGER},
-		oadress = #{oadress,jdbcType=VARCHAR}
+		state =
+		#{state,jdbcType=INTEGER},
+		oadress = #{oadress,jdbcType=VARCHAR},
+		adid =
+		#{adid,jdbcType=INTEGER}
 		where oid = #{oid,jdbcType=INTEGER}
 	</update>
 </mapper>

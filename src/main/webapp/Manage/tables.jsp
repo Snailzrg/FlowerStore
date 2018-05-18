@@ -1,625 +1,360 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	<%
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
 <!DOCTYPE html>
 <html>
 <head>
-这里也.玩一玩${flowerList};
-	<title>Detail Admin - Tables showcase</title>
-    
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-    <!-- bootstrap -->
-    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+<title>Detail Admin - Tables showcase</title>
 
-    <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="css/elements.css" />
-    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- libraries -->
-    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
-    
-    <!-- this page specific styles -->
-    <link rel="stylesheet" href="css/compiled/tables.css" type="text/css" media="screen" />
+<!-- bootstrap -->
+<link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+<link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+<link href="css/bootstrap/bootstrap-overrides.css" type="text/css"
+	rel="stylesheet" />
 
-    <!-- open sans font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+<!-- global styles -->
+<link rel="stylesheet" type="text/css" href="css/layout.css" />
+<link rel="stylesheet" type="text/css" href="css/elements.css" />
+<link rel="stylesheet" type="text/css" href="css/icons.css" />
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<!-- libraries -->
+<link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+<!-- this page specific styles -->
+<link rel="stylesheet" href="css/compiled/tables.css" type="text/css"
+	media="screen" />
+
+<!-- open sans font -->
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css' />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
 <body>
 
-    <!-- navbar -->
-    <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            
-            <a class="brand" href="index.html"><img src="img/logo.png" /></a>
+	<div class="navbar navbar-inverse">
+		<div class="navbar-inner">
+			<a class="brand"><img src="img/logo.png" /></a>
+		</div>
+	</div>
 
-            <ul class="nav pull-right">                
-                <li class="hidden-phone">
-                    <input class="search" type="text" />
-                </li>
-                <li class="notification-dropdown hidden-phone">
-                    <a href="#" class="trigger">
-                        <i class="icon-warning-sign"></i>
-                        <span class="count">8</span>
-                    </a>
-                    <div class="pop-dialog">
-                        <div class="pointer right">
-                            <div class="arrow"></div>
-                            <div class="arrow_border"></div>
-                        </div>
-                        <div class="body">
-                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                            <div class="notifications">
-                                <h3>You have 6 new notifications</h3>
-                                <a href="#" class="item">
-                                    <i class="icon-signin"></i> New user registration
-                                    <span class="time"><i class="icon-time"></i> 13 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-signin"></i> New user registration
-                                    <span class="time"><i class="icon-time"></i> 18 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-envelope-alt"></i> New message from Alejandra
-                                    <span class="time"><i class="icon-time"></i> 28 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-signin"></i> New user registration
-                                    <span class="time"><i class="icon-time"></i> 49 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <i class="icon-download-alt"></i> New order placed
-                                    <span class="time"><i class="icon-time"></i> 1 day.</span>
-                                </a>
-                                <div class="footer">
-                                    <a href="#" class="logout">View all notifications</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="notification-dropdown hidden-phone">
-                    <a href="#" class="trigger">
-                        <i class="icon-envelope-alt"></i>
-                    </a>
-                    <div class="pop-dialog">
-                        <div class="pointer right">
-                            <div class="arrow"></div>
-                            <div class="arrow_border"></div>
-                        </div>
-                        <div class="body">
-                            <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                            <div class="messages">
-                                <a href="#" class="item">
-                                    <img src="img/contact-img.png" class="display" />
-                                    <div class="name">Alejandra Galván</div>
-                                    <div class="msg">
-                                        There are many variations of available, but the majority have suffered alterations.
-                                    </div>
-                                    <span class="time"><i class="icon-time"></i> 13 min.</span>
-                                </a>
-                                <a href="#" class="item">
-                                    <img src="img/contact-img2.png" class="display" />
-                                    <div class="name">Alejandra Galván</div>
-                                    <div class="msg">
-                                        There are many variations of available, have suffered alterations.
-                                    </div>
-                                    <span class="time"><i class="icon-time"></i> 26 min.</span>
-                                </a>
-                                <a href="#" class="item last">
-                                    <img src="img/contact-img.png" class="display" />
-                                    <div class="name">Alejandra Galván</div>
-                                    <div class="msg">
-                                        There are many variations of available, but the majority have suffered alterations.
-                                    </div>
-                                    <span class="time"><i class="icon-time"></i> 48 min.</span>
-                                </a>
-                                <div class="footer">
-                                    <a href="#" class="logout">View all messages</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                        Your account
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="personal_info.jsp">Personal info</a></li>
-                        <li><a href="#">Account settings</a></li>
-                        <li><a href="#">Billing</a></li>
-                        <li><a href="#">Export your data</a></li>
-                        <li><a href="#">Send feedback</a></li>
-                    </ul>
-                </li>
-                <li class="settings hidden-phone">
-                    <a href="personal_info.jsp" role="button">
-                        <i class="icon-cog"></i>
-                    </a>
-                </li>
-                <li class="settings hidden-phone">
-                    <a href="AdminLogin.jsp" role="button">
-                        <i class="icon-share-alt"></i>
-                    </a>
-                </li>
-            </ul>            
-        </div>
-    </div>
-    <!-- end navbar -->
 
-    <!-- sidebar -->
-     <div id="sidebar-nav">
-        <ul id="dashboard-menu">
-            <li class="active">
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
-                <a href="index.jsp">
-                    <i class="icon-home"></i>
-                    <span>主页</span>
-                </a>
-            </li>            
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-group"></i>
-                    <span>用户管理</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="user_list.jsp">用户列表</a></li>
-                    <li><a href="new_user.jsp">用户新增</a></li>
-                    <li><a href="user_profile.jsp">用户信息</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="tables.jsp">
-                    <i class="icon-th-large"></i>
-                    <span>订单</span>
-                </a>
-            </li>
-            <li>
-                <a href="personal_info.jsp">
-                    <i class="icon-cog"></i>
-                    <span>My Info</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-share-alt"></i>
-                    <span>管理</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="AdminLogin.jsp">管理登录</a></li>
-                    <li><a href="AdminLogout.jsp">管理退出</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- end sidebar -->
+	<div id="sidebar-nav">
+		<ul id="dashboard-menu">
+			<li class="active">
+				<div class="pointer">
+					<div class="arrow"></div>
+					<div class="arrow_border"></div>
+				</div> <a href="index.jsp"> <i class="icon-home"></i> <span>主页</span>
+			</a>
+			</li>
+			<li><a class="dropdown-toggle" href="#"> <i
+					class="icon-group"></i> <span>网站用户</span> <i
+					class="icon-chevron-down"></i>
+			</a>
+				<ul class="submenu">
+					<li><a href="user_list.jsp">用户列表</a></li>
+					<!-- <li><a href="new_user.jsp">用户新增</a></li>
+					<li><a href="user_profile.jsp">用户信息</a></li> -->
+				</ul></li>
+			<li><a href="tables.jsp"> <i class="icon-th-large"></i> <span>订单</span>
+			</a></li>
+	<!-- 		<li><a href="personal_info.jsp"> <i class="icon-cog"></i> <span>My
+						Info</span>
+			</a></li> -->
+			
+			<li><a class="dropdown-toggle" href="#"> <i
+					class="icon-share-alt"></i> <span>管理</span> <i
+					class="icon-chevron-down"></i>
+			</a>
+				<ul class="submenu">
+					<li><a href="AdminLogin.jsp">管理登录</a></li>
+					<li><a href="${APP_PATH}/adLogout">管理退出</a></li>
+				</ul></li>
+		</ul>
+	</div>
 
 
 	<!-- main container -->
-    <div class="content">
-        
-        <!-- settings changer -->
-        <div class="skins-nav">
-            <a href="#" class="skin first_nav selected">
-                <span class="icon"></span><span class="text">Default</span>
-            </a>
-            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-                <span class="icon"></span><span class="text">Dark skin</span>
-            </a>
-        </div>
-        
-        <div class="container-fluid">
-            <div id="pad-wrapper">
-                
-                <!-- products table-->
-                <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
-                <div class="table-wrapper products-table section">
-                    <div class="row-fluid head">
-                        <div class="span12">
-                            <h4>Products</h4>
-                        </div>
-                    </div>
+	<div class="content">
 
-                    <div class="row-fluid filter-block">
-                        <div class="pull-right">
-                            <div class="ui-select">
-                                <select>
-                                  <option />Filter users
-                                  <option />Signed last 30 days
-                                  <option />Active users
-                                </select>
-                            </div>
-                            <input type="text" class="search" />
-                            <a class="btn-flat success new-product">+ Add product</a>
-                        </div>
-                    </div>
+		<!-- settings changer -->
+		<div class="skins-nav">
+			<a href="#" class="skin first_nav selected"> <span class="icon"></span><span
+				class="text">Default</span>
+			</a> <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
+				<span class="icon"></span><span class="text">Dark skin</span>
+			</a>
+		</div>
 
-                    <div class="row-fluid">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="span3">
-                                        <input type="checkbox" />
-                                        Product
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>Description
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- row -->
-                                <tr class="first">
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Generate Lorem </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Internet tend</a>
-                                    </td>
-                                    <td class="description">
-                                        There are many variations of passages.
-                                    </td>
-                                    <td>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Generate Lorem </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- row -->
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Internet tend</a>
-                                    </td>
-                                    <td class="description">
-                                        There are many variations of passages.
-                                    </td>
-                                    <td>
-                                        <span class="label label-info">Standby</span>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" />
-                                        <div class="img">
-                                            <img src="img/table-img.png" />
-                                        </div>
-                                        <a href="#" class="name">Generate Lorem </a>
-                                    </td>
-                                    <td class="description">
-                                        if you are going to use a passage of Lorem Ipsum.
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                        <ul class="actions">
-                                            <li><a href="#">Edit</a></li>
-                                            <li class="last"><a href="#">Delete</a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- end products table -->
+		<div class="container-fluid">
+			<div id="pad-wrapper">
+				<!-- 订单表 总表 -->
+				<div class="table-wrapper orders-table section">
+					<div class="row-fluid head">
+						<div class="span12">
+							<h4>订单</h4>
+						</div>
+					</div>
 
-                <!-- orders table -->
-                <div class="table-wrapper orders-table section">
-                    <div class="row-fluid head">
-                        <div class="span12">
-                            <h4>Orders</h4>
-                        </div>
-                    </div>
+					<div class="row-fluid filter-block">
+						<div class="pull-right">
+							<div class="btn-group pull-right">
+								<button class="glow left large" id="all_orders"
+									style="color: red;">所有订单</button>
+								<button class="glow middle large" id="unPass_orders">未发货</button>
+								<button class="glow right large" id="Pass_orders">已发货</button>
+							</div>
+							<!-- 	<input type="text" class="search order-search"
+								placeholder="Search for an order.." /> -->
+						</div>
+					</div>
 
-                    <div class="row-fluid filter-block">
-                        <div class="pull-right">
-                            <div class="btn-group pull-right">
-                                <button class="glow left large">All</button>
-                                <button class="glow middle large">Pending</button>
-                                <button class="glow right large">Completed</button>
-                            </div>
-                            <input type="text" class="search order-search" placeholder="Search for an order.." />
-                        </div>
-                    </div>
+					<div class="row-fluid">
+						<table class="table table-hover" id="show_order">
+							<thead>
+								<tr>
+									<th class="span2">订单 编号</th>
+									<th class="span3">订单 日期</th>
+									<th class="span3"><span class="line"></span> 订单 状态</th>
+									<th class="span3"><span class="line"></span> 订单 留言</th>
+									<th class="span3"><span class="line"></span> 订单 价格</th>
+									<th class="span3"><span class="line"></span> 操 作</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
 
-                    <div class="row-fluid">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="span2">
-                                        Order ID
-                                    </th>
-                                    <th class="span3">
-                                        Date
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>
-                                        Name
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>
-                                        Status
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>
-                                        Items
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>
-                                        Total amount
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- row -->
-                                <tr class="first">
-                                    <td>
-                                        <a href="#">#459</a>
-                                    </td>
-                                    <td>
-                                        Jan 03, 2014
-                                    </td>
-                                    <td>
-                                        <a href="#">John Smith</a>
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Completed</span>
-                                    </td>
-                                    <td>
-                                        3
-                                    </td>
-                                    <td>
-                                        $ 3,500.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">#510</a>
-                                    </td>
-                                    <td>
-                                        Feb 22, 2014
-                                    </td>
-                                    <td>
-                                        <a href="#">Anna Richards</a>
-                                    </td>
-                                    <td>
-                                        <span class="label label-info">Pending</span>
-                                    </td>
-                                    <td>
-                                        5
-                                    </td>
-                                    <td>
-                                        $ 800.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">#590</a>
-                                    </td>
-                                    <td>
-                                        Mar 03, 2014
-                                    </td>
-                                    <td>
-                                        <a href="#">Steven McFly</a>
-                                    </td>
-                                    <td>
-                                        <span class="label label-success">Completed</span>
-                                    </td>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        $ 1,350.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">#618</a>
-                                    </td>
-                                    <td>
-                                        Jan 03, 2014
-                                    </td>
-                                    <td>
-                                        <a href="#">George Williams</a>
-                                    </td>
-                                    <td>
-                                        <span class="label">Canceled</span>
-                                    </td>
-                                    <td>
-                                        8
-                                    </td>
-                                    <td>
-                                        $ 3,499.99
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- end orders table -->
-
-                <!-- users table -->
-                <div class="table-wrapper users-table section">
-                    <div class="row-fluid head">
-                        <div class="span12">
-                            <h4>Users</h4>
-                        </div>
-                    </div>
-
-                    <div class="row-fluid filter-block">
-                        <div class="pull-right">
-                            <a class="btn-flat pull-right success new-product add-user">+ Add user</a>
-                            <input type="text" class="search user-search" placeholder="Search for users.." />
-                        </div>
-                    </div>
-
-                    <div class="row-fluid">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="span4">
-                                        Name
-                                    </th>
-                                    <th class="span3">
-                                        <span class="line"></span>Signed up
-                                    </th>
-                                    <th class="span2">
-                                        <span class="line"></span>Total spent
-                                    </th>
-                                    <th class="span3 align-right">
-                                        <span class="line"></span>Email
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- row -->
-                                <tr class="first">
-                                    <td>
-                                        <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                        <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                        <span class="subtext">Graphic Design</span>
-                                    </td>
-                                    <td>
-                                        Jan 11, 2012
-                                    </td>
-                                    <td>
-                                        $ 500.00
-                                    </td>
-                                    <td class="align-right">
-                                        <a href="#">alejandra@gmail.com</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                        <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                        <span class="subtext">Graphic Design</span>
-                                    </td>
-                                    <td>
-                                        Apr 23, 2012
-                                    </td>
-                                    <td>
-                                        $ 3,210.00
-                                    </td>
-                                    <td class="align-right">
-                                        <a href="#">alejandra@gmail.com</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="img/contact-img.png" class="img-circle avatar hidden-phone" />
-                                        <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                        <span class="subtext">Graphic Design</span>
-                                    </td>
-                                    <td>
-                                        Feb 03, 2014
-                                    </td>
-                                    <td>
-                                        $ 890.00
-                                    </td>
-                                    <td class="align-right">
-                                        <a href="#">alejandra@gmail.com</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="img/contact-img2.png" class="img-circle avatar hidden-phone" />
-                                        <a href="user-profile.html" class="name">Alejandra Galvan Castillo</a>
-                                        <span class="subtext">Graphic Design</span>
-                                    </td>
-                                    <td>
-                                        Sep 19, 2012
-                                    </td>
-                                    <td>
-                                        $ 899.99
-                                    </td>
-                                    <td class="align-right">
-                                        <a href="#">alejandra@gmail.com</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- end users table -->
-            </div>
-        </div>
-    </div>
-    <!-- end main container -->
+						<div class="pagination pull-right" id="page_info">
+							<div id="page_nav_area"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/theme.js"></script>
-<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/theme.js"></script>
+	<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() {
+			alert("64555555555555..");
+			show_order(1, 0);
+		});
+		var thispage=null;
+		var thisstate=null; 
+
+		$("#all_orders").click(function() {
+			$("button").css("color","black");
+			$("#all_orders").css("color","red");
+			alert("查询");
+			show_order(1, 0);
+		});
+
+		$("#unPass_orders").click(function() {
+			$("button").css("color","black");
+			$("#unPass_orders").css("color","red");
+			show_order(1, 1);
+			
+		});
+		$("#Pass_orders").click(function() {
+			$("button").css("color","black");
+			$("#Pass_orders").css("color","red");
+			alert("查Pass_orders询");
+			show_order(1, 2);
+		});
+
+		$(document).on("click",".edit_btn",function(){
+			//alert("edit");
+			//1、查出部门信息，并显示部门列表
+			getDepts("#empUpdateModal select");
+			//2、查出员工信息，显示员工信息
+			 getEmp($(this).attr("edit-id")); 
+			
+			//3、把员工的id传递给模态框的更新按钮
+			$("#emp_update_btn").attr("edit-id",$(this).attr("edit-id"));
+			$("#empUpdateModal").modal({
+				backdrop:"static"
+			});
+		});
+		
+		
+		function show_order(page, parmas) {
+			alert(556);
+			$.ajax({
+				url : "../getOrdersWithType",
+				type : "get",
+				data : {
+					"pn" : page,
+					"parmas" : parmas
+				},
+				success : function(result) {
+					if (result.code == 200) {
+						alert("失败");
+					} else {
+						alert("ok");
+						showOrders(result);
+						showPaages(result);
+					}
+
+				}
+			});
+		}
+
+		function showOrders(result) {
+			thispage=result.extend.pageInfo.pageNum;
+			$("#show_order tbody").empty();
+			var orderList = result.extend.pageInfo.list;
+			$.each(orderList, function(index, item) {
+				//<span class="label label-success">
+				var td1 = $('<td></td>').append(index + 1);
+				var td2 = $('<td></td>').append(item.odate);
+
+				var spn = $('<span class="label label-success">');
+
+				/* 	var genderTd = $("<td></td>").append(
+							item.gender == 'M' ? "男" : "女"); */
+				var state = "代发货";
+			   var btnTd = null;
+				if (item.state == 1) {
+					state = "代发货"
+					var send_btn = $("<button></button>").addClass(	"btn btn-primary btn-sm send_btn").append($("<span></span>")
+							.addClass("glyphicon glyphicon-pencil")).append("发货");
+					send_btn.attr("del-id", item.oid);
+					
+					var quxiao_btn = $("<button></button>").addClass("btn btn-danger btn-sm quxiao_btn").append($("<span></span>")
+							.addClass("glyphicon glyphicon-trash")).append("取消");
+					quxiao_btn.attr("del-id", item.oid);
+					 btnTd = $("<td></td>").append(send_btn).append("   ").append(quxiao_btn);
+				}
+				if (item.state == 2) {
+					state = "已发货"
+						var delBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn").append($("<span></span>")
+								.addClass("glyphicon glyphicon-trash")).append("删除");
+						delBtn.attr("del-id", item.oid);
+						 btnTd = $("<td></td>").append("     ").append(delBtn);
+				}
+				var td3 = $('<td></td>').append(state);
+				var td4 = $('<td></td>').append(item.oadress);
+				var td5 = $('<td></td>').append("￥" + item.oprice);//
+				
+				
+				
+				$("<tr></tr>").append(td1).append(td2).append(td3).append(td4)
+						.append(td5).append(btnTd).appendTo("#show_order tbody");
+			});
+
+		}
+		
+		/**
+		*/
+		$(document).on("click",".send_btn",function(){
+		   alert("11.."+$(this).attr("del-id"));
+			updateOrder($(this).attr("del-id"),2);
+		});
+		
+		
+		
+		$(document).on("click",".quxiao_btn",function(){
+			alert("12.."+$(this).attr("del-id"));
+			updateOrder($(this).attr("del-id"),0);
+		});
+		
+		
+		$(document).on("click",".delete_btn",function(){
+			alert("13.."+$(this).attr("del-id"));
+			updateOrder($(this).attr("del-id"),0);
+		});
+		
+		/**
+		*/
+		function updateOrder(oid,parmas){
+			$.ajax({
+				url : "../updateForder",
+				type : "get",
+				data : {
+					"oid" : oid,
+					"parmas" : parmas
+				},
+				success : function(result) {
+					if (result.code == 200) {
+						alert("error");
+					} else {
+						alert("ok");
+						 show_order(thispage, 0);
+					}
+				}
+		});
+}
+		
+		//展示分页信息
+		function showPaages(result) {
+			//解析显示分页条,点击分页要可以去下一页....
+			$("#page_nav_area").empty();
+			var ul = $("<ul></ul>");
+			//构建元素
+			var firstPageLi = $("<li></li>").append(
+					$("<a></a>").append("首页").attr("href", "#"));
+			var prePageLi = $("<li></li>").append(
+					$("<a></a>").append("&laquo;"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
+				firstPageLi.addClass("disabled");
+				prePageLi.addClass("disabled");
+			} else {
+				//为元素添加点击翻页的事件
+				firstPageLi.click(function() {
+					getFlowersWithType(p1, 1);
+				});
+				prePageLi.click(function() {
+					getFlowersWithType(p1, result.extend.pageInfo.pageNum - 1);
+				});
+			}
+			var nextPageLi = $("<li></li>").append(
+					$("<a></a>").append("&raquo;"));
+			var lastPageLi = $("<li></li>").append(
+					$("<a></a>").append("末页").attr("href", "#"));
+			if (result.extend.pageInfo.hasNextPage == false) {
+				//如果没有下一页
+				nextPageLi.addClass("disabled");
+				lastPageLi.addClass("disabled");
+			} else {
+				nextPageLi.click(function() {
+					getData(result.extend.pageInfo.pageNum + 1, "");
+				});
+				lastPageLi.click(function() {
+					getData(result.extend.pageInfo.pages, "");
+				});
+			}
+			//添加首页和前一页 的提示
+			ul.append(firstPageLi).append(prePageLi);
+			//1,2，3遍历给ul中添加页码提示
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("active");
+				}
+				numLi.click(function() {
+					getData(item, "");
+				});
+				ul.append(numLi);
+			});
+			//添加下一页和末页 的提示
+			ul.append(nextPageLi).append(lastPageLi);
+
+			//把ul加入到nav
+			var navEle = $("<nav></nav>").append(ul);
+			navEle.appendTo("#page_nav_area");
+		}
+	</script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 package com.zrg.ixd.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zrg.ixd.bean.User;
 import com.zrg.ixd.service.UserService;
 import com.zrg.ixd.util.MD5Util;
@@ -21,6 +26,30 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	/**
+	 * 管理员获得用户。。。
+	 * @param model
+	 * @param session
+	 * @param uname
+	 * @param pn
+	 * @return
+	 */
+	@RequestMapping("/getUsers")
+	@ResponseBody
+	public Msg getUsers(@RequestParam(value="parmas",defaultValue="kong")String parmas,@RequestParam(value="pn",defaultValue="1")Integer pn) {
+  //获取所有的用户...  用户
+		System.out.println("here.getUsers.."+pn+"-------"+parmas);
+   	  	
+		PageHelper.startPage(pn, 10);
+		List<User> ulists=userService.getUserLists(parmas);
+		PageInfo<User> page=new PageInfo<User>(ulists,10);	
+		List<User> zlist=page.getList();
+		System.out.println(zlist.size());
+		return Msg.success().add("pageInfo", page).add("parmas", parmas);
+	}
+	
+	
+	
 	// @ResponseBody
 	@RequestMapping("/userLord")
 	@ResponseBody
@@ -32,16 +61,20 @@ public class UserController {
 		if (u.getUpwd() == null && u.getUpwd() == "") {
 			return Msg.fail().add("var_msg", "密码为空");
 		}
+		System.out.println(u.getUname()+"--"+u.getUpwd());
+		//MD5加密 解密...
+		u.setUpwd(MD5Util.convertMD5(u.getUpwd())); //暂时 不做加密
+		System.out.println(u.getUname()+"--"+u.getUpwd());
 		User user=userService.login(u);
+		System.out.println(user);
 		if (user.getUid() == null) {
 			
 			return Msg.fail().add("var_msg", "登录失败，用户不存在");
 		}
-		// u.setUpwd(MD5Util.convertMD5(u.getUpwd())); 暂时 不做加密
+		
 	
 		session.setAttribute("User", user);
 		return  Msg.fail().success().add("var_msg", "登录成功");
-
 	}
 
 	/**
@@ -53,7 +86,7 @@ public class UserController {
 	@ResponseBody
 	public Msg userRegist(@Valid User u) {
 
-		System.out.println("這裏處理注冊。。。");
+		System.out.println("這裏處理快速注冊。。。");
 		System.out.println(u.getUname());
 		
 		System.out.println(u.getUpwd());
@@ -62,11 +95,11 @@ public class UserController {
 		System.out.println(u.getUpwd());
 		System.out.println(u.getEmail());
 		
-	/*	if(userService.insertUser(u)) {
-			
-		}*/
+		if(userService.insertUser(u)) {
+			return Msg.success();
+		}
+		return Msg.fail();
 		
-		return Msg.success();
 	}
 
 	/**
@@ -74,21 +107,31 @@ public class UserController {
 	 * @param u
 	 * @return
 	 */
-	@RequestMapping("/userUpdate")
-	public String userUpate(User u) {
-
-		return "view/";
-	}
+		@RequestMapping("/updatePwd")
+		@ResponseBody
+		public Msg userUpdate(@RequestParam("upwd") String upwd,@RequestParam("newPwd") String newPwd,HttpSession session) {
+			System.out.println("userUpdate......");
+			User u = (User) session.getAttribute("User");
+			System.out.println(u.getUpwd());
+			if(u.getUpwd().equals(MD5Util.convertMD5(upwd.trim()))) {
+				u.setUpwd(MD5Util.convertMD5(newPwd));
+				System.out.println("改密码....");
+				userService.updateUser(u);
+				session.setAttribute("User", null);
+				return Msg.success();
+			}
+			return Msg.fail();
+		}
 
 	/**
 	 * 
 	 * @param u
 	 * @return
 	 */
-	@RequestMapping("/getAllUser")
-	public String getAllUser(User u) {
-
-		return "";
+	@RequestMapping("/dissLord")
+	public String getAllUser(HttpSession session) {
+		session.setAttribute("User", null);
+		return "/view/index";
 	}
 
 	@RequestMapping("/checkuserName")
@@ -98,7 +141,6 @@ public class UserController {
 		 //有 true 
 		 return Msg.success();
 	 }
-	 
 		return Msg.fail();
 	}
 	

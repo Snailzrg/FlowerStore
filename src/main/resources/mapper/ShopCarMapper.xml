@@ -10,6 +10,24 @@
     <result column="fmoney" jdbcType="DOUBLE" property="fmoney" />
     <result column="fprice" jdbcType="DOUBLE" property="fprice" />
   </resultMap>
+  
+  					<!-- 自定义的结果集 -->
+   <resultMap id="withZrgUsrMap" type="com.zrg.ixd.bean.ShopCar">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="fname" jdbcType="VARCHAR" property="fname" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="fmoney" jdbcType="DOUBLE" property="fmoney" />
+    <result column="fprice" jdbcType="DOUBLE" property="fprice" />
+
+    <association property="flower" javaType="com.zrg.ixd.bean.Flower">
+     <id column="fid" jdbcType="INTEGER" property="fid" />
+      <result column="fimg" jdbcType="VARCHAR" property="fimg" />
+      <result column="count" jdbcType="INTEGER" property="count" />
+    </association>
+   </resultMap>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -85,6 +103,33 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  <sql id="mydept_Column_List">g.gid,g.uid,g.fid,g.fname,g.count,g.fmoney,g.fprice,f.fimg,f.count </sql>
+ <!--  //select f.* ,g.*   from flower f LEFT JOIN gwc g on  f.fid=g.fid -->
+  <select id="selectByExampleWithImgCont" resultMap="withZrgUsrMap"> 
+  select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="mydept_Column_List" />
+     from flower f LEFT JOIN gwc g on  f.fid=g.fid
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    </select>
+ 
+ 
+    <select id="selectByPrimaryKeyWithImgCont" parameterType="java.lang.Integer" resultMap="withZrgUsrMap">
+    select 
+    <include refid="mydept_Column_List" />
+    from flower f LEFT JOIN gwc g on  f.fid=g.fid
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -1,11 +1,16 @@
 package com.zrg.ixd.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zrg.ixd.bean.Forder;
 import com.zrg.ixd.bean.OrderDetil;
+import com.zrg.ixd.bean.OrderDetilExample;
+import com.zrg.ixd.bean.OrderDetilExample.Criteria;
 import com.zrg.ixd.dao.OrderDetilMapper;
+
 
 @Service
 public class OrderDetilService {
@@ -26,5 +31,16 @@ public class OrderDetilService {
 			return true;
 		}
 		return false;
+	}
+	/**
+	 * 得到所有详细订单
+	 * @param oid
+	 * @return
+	 */
+	public List<OrderDetil> getOdLists(Integer oid){
+		OrderDetilExample example=new OrderDetilExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andOidEqualTo(oid);
+		return orderDetilMapper.selectByExample(example);
 	}
 }

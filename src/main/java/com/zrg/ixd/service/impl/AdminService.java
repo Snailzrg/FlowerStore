@@ -5,33 +5,32 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zrg.ixd.bean.Adim;
-import com.zrg.ixd.bean.AdimExample;
-import com.zrg.ixd.bean.User;
+import com.zrg.ixd.bean.Admin;
+import com.zrg.ixd.bean.AdminExample;
 
-import com.zrg.ixd.bean.AdimExample.Criteria;
-import com.zrg.ixd.dao.AdimMapper;
+import com.zrg.ixd.bean.AdminExample.Criteria;
+import com.zrg.ixd.dao.AdminMapper;
 import com.zrg.ixd.util.MD5Util;
 
 @Service
 public class AdminService {
 
 	@Autowired
-	AdimMapper adMapper;
+	AdminMapper AdminMapper;
 
-	public Adim Login(Adim ad) {
+	public Admin Login(Admin ad) {
 		
-		AdimExample example = new AdimExample();
+		AdminExample example = new AdminExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andAnameEqualTo(ad.getAname());
 		criteria.andApwdEqualTo(ad.getApwd());
 		
 		
-		List<Adim> ulists=adMapper.selectByExample(example);
+		List<Admin> ulists=AdminMapper.selectByExample(example);
 		if(ulists.size()>0) {
 			return ulists.get(0);
 		}else {
-			return new Adim();
+			return new Admin();
 		}
 		
 	}

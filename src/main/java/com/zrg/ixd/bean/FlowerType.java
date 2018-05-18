@@ -1,7 +1,14 @@
 package com.zrg.ixd.bean;
 
-public class FlowerType {
-    private Integer ftid;
+import java.io.Serializable;
+
+public class FlowerType implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer ftid;
 
     private String ftname;
 

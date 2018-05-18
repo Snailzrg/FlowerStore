@@ -14,7 +14,7 @@ public class FlowerExample {
 
     
     /**
-     * 自定义的 
+     * 自定义的 用于动态分割
      */
     private Integer lim;
     
@@ -25,8 +25,8 @@ public class FlowerExample {
 	public void setLim(Integer lim) {
 		this.lim = lim;
 	}
-
-	public FlowerExample() {
+	
+    public FlowerExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -723,6 +723,66 @@ public class FlowerExample {
 
         public Criteria andFimgNotBetween(String value1, String value2) {
             addCriterion("fimg not between", value1, value2, "fimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateIsNull() {
+            addCriterion("fstate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateIsNotNull() {
+            addCriterion("fstate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateEqualTo(Integer value) {
+            addCriterion("fstate =", value, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateNotEqualTo(Integer value) {
+            addCriterion("fstate <>", value, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateGreaterThan(Integer value) {
+            addCriterion("fstate >", value, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("fstate >=", value, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateLessThan(Integer value) {
+            addCriterion("fstate <", value, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateLessThanOrEqualTo(Integer value) {
+            addCriterion("fstate <=", value, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateIn(List<Integer> values) {
+            addCriterion("fstate in", values, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateNotIn(List<Integer> values) {
+            addCriterion("fstate not in", values, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateBetween(Integer value1, Integer value2) {
+            addCriterion("fstate between", value1, value2, "fstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andFstateNotBetween(Integer value1, Integer value2) {
+            addCriterion("fstate not between", value1, value2, "fstate");
             return (Criteria) this;
         }
     }

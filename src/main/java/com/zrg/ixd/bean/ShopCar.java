@@ -1,7 +1,14 @@
 package com.zrg.ixd.bean;
 
-public class ShopCar {
+import java.io.Serializable;
+
+public class ShopCar implements Serializable{
    
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer gid;
 
@@ -16,8 +23,23 @@ public class ShopCar {
     private Double fmoney;
 
     private Double fprice;
+    
+    /**
+     *鲜花表+用户 和购物车表是一对1的关系？
+     * 新增  暂时未使用
+     */
+    private Flower flower;
 
-    public Integer getGid() {
+	public Flower getFlower() {
+		return flower;
+	}
+
+	public void setFlower(Flower flower) {
+		this.flower = flower;
+	}
+
+	
+	public Integer getGid() {
         return gid;
     }
 

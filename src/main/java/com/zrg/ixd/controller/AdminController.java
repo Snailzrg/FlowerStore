@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zrg.ixd.bean.Adim;
+import com.zrg.ixd.bean.Admin;
 import com.zrg.ixd.bean.Flower;
 import com.zrg.ixd.bean.FlowerType;
 import com.zrg.ixd.service.impl.AdminService;
@@ -32,9 +32,9 @@ public class AdminController {
 	
 	@RequestMapping("/adLogin")
 	@ResponseBody
-	public Msg AdminLogin(Adim ad,HttpSession session,Model model) {
+	public Msg AdminLogin(Admin ad,HttpSession session,Model model) {
 		System.out.println("管理员登录..."+ad.getAname()+"--miam--"+ad.getApwd());
-		Adim admin=adService.Login(ad);
+		Admin admin=adService.Login(ad);
 		System.out.println(admin.getAname()==null);
 		if(admin.getAname()!=null) {
 			session.setAttribute("Admin", admin);
@@ -56,4 +56,13 @@ public class AdminController {
 		return "Manage/AdminLogin";
 	}
 	
+	@RequestMapping("/check_admin")
+	@ResponseBody
+	public Msg check_admin(HttpSession session) {
+		Admin ad=(Admin) session.getAttribute("Admin");
+		if(ad!=null) {
+			return Msg.success();
+		}
+		return Msg.fail();
+	}
 }

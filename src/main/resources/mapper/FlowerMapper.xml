@@ -11,6 +11,7 @@
     <result column="color" jdbcType="VARCHAR" property="color" />
     <result column="creatdate" jdbcType="DATE" property="creatdate" />
     <result column="fimg" jdbcType="VARCHAR" property="fimg" />
+    <result column="fstate" jdbcType="INTEGER" property="fstate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,8 +72,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    fid, ftid, fname, fdetil, count, price, color, creatdate, fimg
+    fid, ftid, fname, fdetil, count, price, color, creatdate, fimg, fstate
   </sql>
+  
   <select id="selectByExample" parameterType="com.zrg.ixd.bean.FlowerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -88,35 +90,13 @@
     </if>
   </select>
   
-  <!-- -排序的查询  -->
-  <select id="selectWithPX" parameterType="com.zrg.ixd.bean.FlowerExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from flower
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-     <if test="lim != 0">
-     limit ${lim}
-    </if>
-    
-  </select>
-  
-  
-  
-  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from flower
     where fid = #{fid,jdbcType=INTEGER}
   </select>
+ 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from flower
     where fid = #{fid,jdbcType=INTEGER}
@@ -130,12 +110,12 @@
   <insert id="insert" parameterType="com.zrg.ixd.bean.Flower">
     insert into flower (fid, ftid, fname, 
       fdetil, count, price, 
-      color, creatdate, fimg
-      )
+      color, creatdate, fimg, 
+      fstate)
     values (#{fid,jdbcType=INTEGER}, #{ftid,jdbcType=INTEGER}, #{fname,jdbcType=VARCHAR}, 
       #{fdetil,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, 
-      #{color,jdbcType=VARCHAR}, #{creatdate,jdbcType=DATE}, #{fimg,jdbcType=VARCHAR}
-      )
+      #{color,jdbcType=VARCHAR}, #{creatdate,jdbcType=DATE}, #{fimg,jdbcType=VARCHAR}, 
+      #{fstate,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zrg.ixd.bean.Flower">
     insert into flower
@@ -167,6 +147,9 @@
       <if test="fimg != null">
         fimg,
       </if>
+      <if test="fstate != null">
+        fstate,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="fid != null">
@@ -196,14 +179,42 @@
       <if test="fimg != null">
         #{fimg,jdbcType=VARCHAR},
       </if>
+      <if test="fstate != null">
+        #{fstate,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
+ 
+ 
   <select id="countByExample" parameterType="com.zrg.ixd.bean.FlowerExample" resultType="java.lang.Long">
     select count(*) from flower
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
+   
   </select>
+
+  <!-- -排序的查询  -->
+  <select id="selectWithPX" parameterType="com.zrg.ixd.bean.FlowerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flower
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+     <if test="lim != 0">
+     limit ${lim}
+    </if>
+    
+  </select>
+  
+  
   <update id="updateByExampleSelective" parameterType="map">
     update flower
     <set>
@@ -234,6 +245,9 @@
       <if test="record.fimg != null">
         fimg = #{record.fimg,jdbcType=VARCHAR},
       </if>
+      <if test="record.fstate != null">
+        fstate = #{record.fstate,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -249,7 +263,8 @@
       price = #{record.price,jdbcType=DOUBLE},
       color = #{record.color,jdbcType=VARCHAR},
       creatdate = #{record.creatdate,jdbcType=DATE},
-      fimg = #{record.fimg,jdbcType=VARCHAR}
+      fimg = #{record.fimg,jdbcType=VARCHAR},
+      fstate = #{record.fstate,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -281,6 +296,9 @@
       <if test="fimg != null">
         fimg = #{fimg,jdbcType=VARCHAR},
       </if>
+      <if test="fstate != null">
+        fstate = #{fstate,jdbcType=INTEGER},
+      </if>
     </set>
     where fid = #{fid,jdbcType=INTEGER}
   </update>
@@ -293,7 +311,8 @@
       price = #{price,jdbcType=DOUBLE},
       color = #{color,jdbcType=VARCHAR},
       creatdate = #{creatdate,jdbcType=DATE},
-      fimg = #{fimg,jdbcType=VARCHAR}
+      fimg = #{fimg,jdbcType=VARCHAR},
+      fstate = #{fstate,jdbcType=INTEGER}
     where fid = #{fid,jdbcType=INTEGER}
   </update>
 </mapper>

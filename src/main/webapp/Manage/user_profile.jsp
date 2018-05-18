@@ -159,58 +159,40 @@
     </div>
     <!-- end navbar -->
 
-    <!-- sidebar -->
-     <div id="sidebar-nav">
-        <ul id="dashboard-menu">
-            <li class="active">
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
-                <a href="index.jsp">
-                    <i class="icon-home"></i>
-                    <span>主页</span>
-                </a>
-            </li>            
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-group"></i>
-                    <span>用户管理</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="user_list.jsp">用户列表</a></li>
-                    <li><a href="new_user.jsp">用户新增</a></li>
-                    <li><a href="user_profile.jsp">用户信息</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="tables.jsp">
-                    <i class="icon-th-large"></i>
-                    <span>订单</span>
-                </a>
-            </li>
-            <li>
-                <a href="personal_info.jsp">
-                    <i class="icon-cog"></i>
-                    <span>My Info</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-share-alt"></i>
-                    <span>管理</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="AdminLogin.jsp">管理登录</a></li>
-                    <li><a href="AdminLogout.jsp">管理退出</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    </div>
-    <!-- end sidebar -->
+   <div id="sidebar-nav">
+		<ul id="dashboard-menu">
+			<li class="active">
+				<div class="pointer">
+					<div class="arrow"></div>
+					<div class="arrow_border"></div>
+				</div> <a href="index.jsp"> <i class="icon-home"></i> <span>主页</span>
+			</a>
+			</li>
+			<li><a class="dropdown-toggle" href="#"> <i
+					class="icon-group"></i> <span>网站用户</span> <i
+					class="icon-chevron-down"></i>
+			</a>
+				<ul class="submenu">
+					<li><a href="user_list.jsp">用户列表</a></li>
+					<!-- <li><a href="new_user.jsp">用户新增</a></li>
+					<li><a href="user_profile.jsp">用户信息</a></li> -->
+				</ul></li>
+			<li><a href="tables.jsp"> <i class="icon-th-large"></i> <span>订单</span>
+			</a></li>
+	<!-- 		<li><a href="personal_info.jsp"> <i class="icon-cog"></i> <span>My
+						Info</span>
+			</a></li> -->
+			
+			<li><a class="dropdown-toggle" href="#"> <i
+					class="icon-share-alt"></i> <span>管理</span> <i
+					class="icon-chevron-down"></i>
+			</a>
+				<ul class="submenu">
+					<li><a href="AdminLogin.jsp">管理登录</a></li>
+					<li><a href="${APP_PATH}/adLogout">管理退出</a></li>
+				</ul></li>
+		</ul>
+	</div>
 
 
 	<!-- main container -->

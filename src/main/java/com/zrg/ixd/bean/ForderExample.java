@@ -501,6 +501,66 @@ public class ForderExample {
             addCriterion("oadress not between", value1, value2, "oadress");
             return (Criteria) this;
         }
+
+        public Criteria andAdidIsNull() {
+            addCriterion("adid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidIsNotNull() {
+            addCriterion("adid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidEqualTo(Integer value) {
+            addCriterion("adid =", value, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidNotEqualTo(Integer value) {
+            addCriterion("adid <>", value, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidGreaterThan(Integer value) {
+            addCriterion("adid >", value, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("adid >=", value, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidLessThan(Integer value) {
+            addCriterion("adid <", value, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidLessThanOrEqualTo(Integer value) {
+            addCriterion("adid <=", value, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidIn(List<Integer> values) {
+            addCriterion("adid in", values, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidNotIn(List<Integer> values) {
+            addCriterion("adid not in", values, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidBetween(Integer value1, Integer value2) {
+            addCriterion("adid between", value1, value2, "adid");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdidNotBetween(Integer value1, Integer value2) {
+            addCriterion("adid not between", value1, value2, "adid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

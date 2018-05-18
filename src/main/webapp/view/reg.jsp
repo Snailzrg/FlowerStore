@@ -25,9 +25,6 @@
 </head>
 <body class="member">
 
-
-
-
 	<div class="w1185">
 		<div class="logo">
 			<a href="#"></a>
@@ -60,16 +57,27 @@
 				</p>
 				<form class="form" id="reg_form">
 					<ul>
-						<li><span><font>*</font> 用户名：</span><input type="text"
+						<li><span><font>*</font> 用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span><input type="text"
 							id="reg_uanme" placeholder="用户名可以是2-5位中文或者6-16位英文和数字的组合"
 							name="uname" class="txt" /> <label id="uname_wrong_message"
 							name="uname_wrong_message" class="txt2"></label></li>
 						<li><span><font>*</font> 请设置密码：</span><input type="password"
 							id="reg_upwd1" name="upwd" class="txt" /><label
 							id="upwd_wrong_message" name="upwd_wrong_message" class="txt2"></label></li>
+							
 						<li><span><font>*</font> 请确认密码：</span><input type="password"
 							id="reg_upwd2" class="txt" /><label id="upwd_wrong_message2"
 							class="txt2"></label></li>
+								
+						<li><span><font>*</font> 性&nbsp;&nbsp;&nbsp;&nbsp; 别：&nbsp;&nbsp;&nbsp;</span>男<input width='40%' type="radio"
+							name="sex" value="男" checked/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  女<input width='40%' type="radio"
+							name="sex" value="女"/></li>
+						
+						<li><span><font>*</font> 请输入手机：</span><input type="text"
+							id="reg_phone" name="phone" class="txt" /><label
+							id="phone_wrong_message" name="phone_wrong_message"
+							class="txt2"></label></li>
+							
 						<li><span><font>*</font> 请輸入邮箱：</span><input type="text"
 							id="reg_email" name="email" class="txt" /><label
 							id="uemail_wrong_message" name="uemail_wrong_message"
@@ -101,22 +109,15 @@
 		</div>
 	</div>
 
-	<div class="bottom">
-		<a href="#">关于我们</a>|<a href="#">帮助中心</a>|<a href="#">法律声明</a>|<a
-			href="#">用户协议</a>|<a href="#">联系我们</a>|<a href="#">人才招聘</a>|<a
-			href="#">站点地图</a>
-
-		<p>
-			网络文化经营许可证：粤网文[2015]0295-065号<br />© 2015 深圳易易城科技网络有限公司.
-			粤ICP备15042543号
-		</p>
-	</div>
+	
 </body>
 <script type="text/javascript">
 	$(function() {
 		//	alert(1213);
 	});
 
+
+	
 	/**校验 1：先格式验证，再内容？
 	 */
 	$("#reg_button").click(function() {
@@ -156,7 +157,25 @@
 		}
 
 	});
-
+	
+	$("#reg_phone").change(function(){
+		
+		vaildatePhone();
+		
+	});
+	
+	function vaildatePhone(){
+		var phone= $("#reg_phone").val();
+		var b1=true;
+		var regphone = /^1[34578]\d{9}$/; 
+		if (!regphone.test(phone)) {
+			//应该清空这个元素之前的样式
+			show_validate_msg("#phone_wrong_message", "error", "手机格式不正确");
+			return false;
+		}
+		return b1;
+	}
+	
 	//校验用户名是否可用
 	$("#reg_uanme").change(
 			function() {
@@ -181,6 +200,8 @@
 
 	//校验表单数据
 	function validate_reg_form() {
+		alert(vaildatePhone());
+		alert(vaildatePhone()==true);
 		//1、拿到要校验的数据，使用正则表达式
 		var bl = true;
 		var uName = $("#reg_uanme").val();
@@ -207,6 +228,8 @@
 			bl = false;
 		}
 		return bl;
+		
+		
 	}
 
 	//显示校验结果的提示信息

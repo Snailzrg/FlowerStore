@@ -27,5 +27,4 @@ public interface OrderDetilMapper {
     int updateByPrimaryKeySelective(OrderDetil record);
 
     int updateByPrimaryKey(OrderDetil record);
-    
 }

@@ -17,8 +17,15 @@ public interface ShopCarMapper {
     int insertSelective(ShopCar record);
 
     List<ShopCar> selectByExample(ShopCarExample example);
-
     ShopCar selectByPrimaryKey(Integer gid);
+    /**
+     * 自定义
+     * @param example
+     * @return
+     */
+    List<ShopCar> selectByExampleWithImgCont(ShopCarExample example);
+    ShopCar selectByPrimaryKeyWithImgCont(Integer gid);
+  
 
     int updateByExampleSelective(@Param("record") ShopCar record, @Param("example") ShopCarExample example);
 

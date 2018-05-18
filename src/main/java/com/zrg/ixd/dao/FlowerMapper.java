@@ -27,12 +27,10 @@ public interface FlowerMapper {
     int updateByPrimaryKeySelective(Flower record);
 
     int updateByPrimaryKey(Flower record);
-    
- /**
-  * 自定义 排序类
-  * @param example
-  * @return
-  */
-    List<Flower> selectWithPX(FlowerExample example);
-    
+    /**
+     * 自定义 排序类
+     * @param example
+     * @return
+     */
+      List<Flower> selectWithPX(FlowerExample example);
 }

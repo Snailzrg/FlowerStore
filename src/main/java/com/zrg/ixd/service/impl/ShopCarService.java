@@ -19,6 +19,39 @@ public class ShopCarService {
 	@Autowired
 	FlowerService flowerService;
 
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param ix
+	 * @return
+	 */
+	public ShopCar selectByPrimaryKeyWithImgCont(Integer ix) {
+		ShopCar sc = shopCarMapper.selectByPrimaryKeyWithImgCont(ix);
+		return sc;
+	}
+	
+	
+	public List<ShopCar> getShopCarsByUserWithIMgCont(User u) {
+		ShopCarExample example = new ShopCarExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUidEqualTo(u.getUid());
+		return shopCarMapper.selectByExampleWithImgCont(example);
+	}
+	
+	
+	/*****************************帶參數的****************************************************************/
+	/**
+	 * 不帶參數的
+	 * @param u
+	 * @return
+	 */
 	public List<ShopCar> getShopCarsByUser(User u) {
 		ShopCarExample example = new ShopCarExample();
 		Criteria criteria = example.createCriteria();
@@ -60,8 +93,20 @@ public class ShopCarService {
 		return false;
 	}
 
-	public boolean deletShopCar(User u, ShopCar sc) {
-
+	/**
+	 * 删除购物车
+	 * @param u
+	 * @param sc
+	 * @return
+	 */
+	public boolean deletShopCar(User u, Integer gid) {
+		ShopCarExample example = new ShopCarExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUidEqualTo(u.getUid());
+		criteria.andGidEqualTo(gid);
+		if(shopCarMapper.deleteByExample(example)>0) {
+			return true;
+		}
 		return false;
 	}
 
@@ -86,8 +131,30 @@ public class ShopCarService {
 		return false;
 	}
 
+	
+	
+	/**
+	 * 根据id更新 购物车
+	 * @param gid
+	 * @param sc
+	 * @return
+	 */
+	public boolean updateShopCarByGid( Integer gid, ShopCar sc) {
+		ShopCarExample example = new ShopCarExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andGidEqualTo(gid);
+		// 这个方法 ：更新购物车..
+		//return ((shopCarMapper.updateByExampleSelective(sc, example) > 0) ? true : false);
+		if(shopCarMapper.updateByExampleSelective(sc, example) > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	
+	
 	/***
-	 * 
+	 * 更新多条数据..
 	 * @param u
 	 * @param scs
 	 * @return
@@ -97,6 +164,11 @@ public class ShopCarService {
 		return false;
 	}
 
+	/**
+	 * 獲取原始的。。。
+	 * @param ix
+	 * @return
+	 */
 	public ShopCar selectByPrimaryKey(Integer ix) {
 		ShopCar sc = shopCarMapper.selectByPrimaryKey(ix);
 		return sc;

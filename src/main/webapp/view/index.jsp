@@ -10,9 +10,9 @@
 			%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link href="css/style.css" type="text/css" rel="stylesheet" />
-<script src="js/jquery-1.7.min.js" type="text/javascript"></script>
-<script src="js/common.js" type="text/javascript"></script>
+<link href="${APP_PATH }/css/style.css" type="text/css" rel="stylesheet" />
+<script src="${APP_PATH }/js/jquery-1.7.min.js" type="text/javascript"></script>
+<script src="${APP_PATH }/js/common.js" type="text/javascript"></script>
 <script type="text/javascript">
 				//这个是 轮播的实现  參考的cdsn實現的
 				$(document).ready(
@@ -71,7 +71,7 @@
 							 var ft= $("<font>￥</font>");
 							 var bf= $("<b></b>").append(item.price);
 							 var sopn= $("<br/><span>火热促销 <br />亏本甩卖</span>");
-							  var ah=$("<a href='#' class='buy'>立即抢购 ></a>");
+							  var ah=$("<a href='detail?fid="+item.fid+"' class='buy'>立即抢购 ></a>");
 						var p02=$("<p class='p02'></p>").append(ft).append(bf).append(sopn).append(ah);
 						var img=$("<img src="+item.fimg+" height='195px' width='205px'  />");//图片暂时先通用					
 					 	$("<li class='pic'></li>").append(p01).append(p02).append(img).appendTo("#zrg_ixd");
@@ -90,18 +90,6 @@
 					});
 				}
 				
-				/**
-				<div class="item">
-						<a href="#" class="title">Apple/苹果ipad mini2 32GB银7.9英寸平板电脑</a>
-						<p>
-							<font>￥</font>2658.<font>00</font>
-						</p>
-						<a href="#" class="buy"></a>
-						<img src="images/img/img8.jpg" />
-				*/	
-				
-				/**显示 上市新花
-				*/
 				function show_newFlower(result) {
 					alert(25);
 					var newflowers = result.extend.newFlowers;
@@ -120,30 +108,24 @@
 					$("<div class='clear'></div>").appendTo("#zrg_new_flower");
 					//  <div class="clear"></div>
 				}
-				
-				
-			</script>
+		</script>
 </head>
-<body class="index" onload="opener.location.reload()">
+<body class="index" >
 
 	当前用户${User.uname}
-	<div class="top_ad">
+<div class="top_ad">
 		<div class="w1200">
-			<a href="#" id="close"></a>
+			
 		</div>
 	</div>
 
 	<div class="top">
 		<div class="w1200">
 			<div class="left">
-				您好，欢迎光临易易城！
-				<c:if test=""></c:if>
-				<a href="${APP_PATH }/view/login.jsp">[登录]</a> <a
-					href="${APP_PATH }/reg.jsp">[注册]</a>
+				您好，欢迎光临鲜花客！<a href="${APP_PATH }/view/login.jsp" id="show_login">[登录]</a> <a href="${APP_PATH }/view/reg.jsp">[注册]</a>
 			</div>
 			<div class="right">
-				<a href="#">我的会员中心</a>|<a href="#">收藏夹</a>|<a href="#">服务中心</a>|<a
-					href="#">在线客服</a>|<a href="${APP_PATH }/view/product.jsp">购物车<b>0</b>件
+				<a href="${APP_PATH }/view/member.jsp">我的会员中心</a>|<a href="${APP_PATH }/view/shopcar.jsp">购物车<b></b>
 				</a>
 			</div>
 			<div class="clear"></div>
@@ -163,9 +145,8 @@
 						value="搜索" class="sub" />
 				</form>
 				<p>
-					<a href="${APP_PATH }/birth">生日</a>|<a href="${APP_PATH }/wedding">婚礼</a>|<a href="${APP_PATH }/blessing">祝福</a>|
-						<a href="${APP_PATH }/love">爱意表达</a>|<a href="${APP_PATH }/friendShop">友情</a>|<a
-						href="${APP_PATH }/yearMemory">周年纪念</a>
+					<a href="${APP_PATH }/showFlowers?&&ftid=2">生日</a>|<a href="${APP_PATH }/showFlowers?&&ftid=3">婚礼</a>|<a href="${APP_PATH }/showFlowers?&&ftid=4">祝福</a>|
+						<a href="${APP_PATH }/showFlowers?&&ftid=6">友情</a>|<a href="${APP_PATH }/showFlowers?&&ftid=6">周年纪念</a>
 				</p>
 			</div>
 			<div class="s_r">
@@ -186,11 +167,11 @@
 
 	<div class="banner">
 		<ul id="slider">
-			<li style="background: url(images/home/bgf1.jpg) no-repeat center;"><a
+			<li style="background: url(${APP_PATH }/images/home/bgf1.jpg) no-repeat center;"><a
 				href="#"></a></li>
-			<li style="background: url(images/home/bgf2.jpg) no-repeat center;"><a
+			<li style="background: url(${APP_PATH }/images/home/bgf2.jpg) no-repeat center;"><a
 				href="#"></a></li>
-			<li style="background: url(images/home/bgf3.jpg) no-repeat center;"><a
+			<li style="background: url(${APP_PATH }/images/home/bgf3.jpg) no-repeat center;"><a
 				href="#"></a></li>
 		</ul>
 
@@ -223,7 +204,7 @@
 		
      <div class="idx02" id="idx04">
     	<dl>
-        	<dt>热销产品</dt>
+        	<dt>新品上市</dt>
             <dd id="zrg_new_flower">
           <!--      <div class="item">
                 	<a href="#" class="title">Apple/苹果ipad mini2 32GB银7.9英寸平板电脑</a>
@@ -238,72 +219,29 @@
         </dl>
     </div>
 
-		<!--footer-->
-		<div class="footer">
-			<div class="f_bz">
-				<div class="w1200">
-					<dl class="dl01">
-						<dt>正品保证</dt>
-						<dd>正品护航 购物无忧</dd>
-					</dl>
-					<dl class="dl02">
-						<dt>你消费 我买单</dt>
-						<dd>返现购物商城</dd>
-					</dl>
-					<dl class="dl03">
-						<dt>品类丰富</dt>
-						<dd>品类齐全 轻松购物</dd>
-					</dl>
-					<dl class="dl04">
-						<dt>特色服务体验</dt>
-						<dd>为您呈现不一样的服务</dd>
-					</dl>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<div class="f_nav">
-				<div class="w1200">
-					<dl>
-						<dt>新手指南</dt>
-						<dd>
-							<a href="#">注册新用户</a> <a href="#">商品订购流程</a> <a href="#">会员注册协议</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>付款方式</dt>
-						<dd>
-							<a href="#">支付宝支付</a> <a href="#">网上银行支付</a> <a href="#">货到付款</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>常见问题</dt>
-						<dd>
-							<a href="#">订单状态</a> <a href="#">发票说明</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>售后服务</dt>
-						<dd>
-							<a href="#">退换货政策</a> <a href="#">退换货流程</a> <a href="#">退款说明</a>
-							<a href="#">退换货申请</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>客服中心</dt>
-						<dd>
-							<a href="#">常见问题</a> <a href="#">联系客服</a> <a href="#">投诉与建议</a>
-						</dd>
-					</dl>
-					<div class="ewm">
-						<img src="images/home/ico35.png" />
-					</div>
-					<div class="ewm">
-						<img src="images/home/ico38.png" />
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-
-		</div>
+<div class="footer">
+	<div class="f_bz">
+    	<div class="w1200">
+            <dl class="dl01">
+                <dt>正品保证</dt>
+                <dd>现摘鲜花 小鲜肉哟</dd>
+            </dl>
+            <dl class="dl02">
+                <dt>你消费 自己买单</dt>
+                <dd>除非长得帅 免单</dd>
+            </dl>
+            <dl class="dl03">
+                <dt>品类丰富</dt>
+                <dd>品类齐全 轻松购物</dd>
+            </dl>
+            <dl class="dl04">
+                <dt>立足长沙</dt>
+                <dd>为您呈现最鲜的鲜花</dd>
+            </dl>
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+    
 </body>
 </html>

@@ -35,17 +35,23 @@ return true;
 	<div class="top">
 		<div class="w1200">
 			<div class="left">
-				您好，欢迎光临鲜花客！<a href="view/login.jsp">[登录]</a> <a href="view/reg.jsp">[注册]</a>
+				您好，欢迎光临鲜花客！
+				
+				 <c:if test="${User==null}">
+				<a href="view/login.jsp">[登录]</a>
+				</c:if>
+				<a href="view/reg.jsp">[注册]</a>
+				<c:if test="${User!=null}">
+				<a href="${APP_PATH }/dissLord">[注销]</a>
+				</c:if>
 			</div>
 			<div class="right">
-				<a href="#">我的会员中心</a>|<a href="#">收藏夹</a>|<a href="#">服务中心</a>|<a
-					href="#">在线客服</a>|<a href="#">购物车<b>0</b>件
-				</a>
+				<a href="member.jsp">我的会员中心</a>|<a href="shopcar.jsp">购物车<b></b>
 			</div>
 			<div class="clear"></div>
 		</div>
 	</div>
-	z这个 ${User}
+
 	<div class="head">
 		<div class="w1200">
 			<div class="logo">
@@ -59,49 +65,23 @@ return true;
 						value="搜索" class="sub" />
 				</form>
 				<p>
-					<a href="${APP_PATH }/birth">生日</a>|<a href="${APP_PATH }/wedding">婚礼</a>|<a
-						href="${APP_PATH }/blessing">祝福</a>| <a href="${APP_PATH }/love">爱意表达</a>|<a
-						href="${APP_PATH }/friendShop">友情</a>|<a
-						href="${APP_PATH }/yearMemory">周年纪念</a>
+					<a href="${APP_PATH }/showFlowers?&&ftid=2">生日</a>|<a href="${APP_PATH }/showFlowers?&&ftid=3">婚礼</a>|<a href="${APP_PATH }/showFlowers?&&ftid=4">祝福</a>|
+						<a href="${APP_PATH }/showFlowers?&&ftid=6">友情</a>|<a href="${APP_PATH }/showFlowers?&&ftid=6">周年纪念</a>
 				</p>
 			</div>
 			<div class="s_r">
 				<dl>
 					<dt>
 						<p>
-							购物车<span>0</span>
+							购物车<span></span>
 						</p>
 					</dt>
 					<dd>
-						客服电话：<b>400-0139-038</b>
+						客服电话：<b>123-4567-890</b>
 					</dd>
 				</dl>
 			</div>
 			<div class="clear"></div>
-		</div>
-	</div>
-
-	<div class="menu">
-		<div class="w1200">
-
-			<div class="item">
-				<a href="#" class="home">商城首页</a>
-			</div>
-			<div class="item">
-				<a href="#">易易特色</a>
-			</div>
-			<div class="item">
-				<a href="#">热销产品</a>
-			</div>
-			<div class="item">
-				<a href="#">新品上市</a>
-			</div>
-			<div class="item">
-				<a href="#">精品推荐</a>
-			</div>
-			<div class="item">
-				<a href="#">生活服务</a>
-			</div>
 		</div>
 	</div>
 
@@ -198,38 +178,6 @@ return true;
 				</dl>
 			</div>
 			<div class="right">
-				<dl>
-
-					<dt>
-						<a class="cur" href="#a01">商品详情</a>
-					</dt>
-					<dd>
-						<a name="a01"></a>
-						<ul>
-							<li>品牌: Card fina/卡菲纳</li>
-							<li>型号: FPC0062-2</li>
-							<li>是否可预售: 是</li>
-							<li>款式定位: 品质奢华型</li>
-							<li>毛重: 60</li>
-							<li>颜色分类: 头层真皮（珠光咖）</li>
-							<li>尺寸: 1500mm*1900mm 1500mm*2000mm</li>
-							<li>是否带储物空间: 否</li>
-							<li>是否带软靠: 是</li>
-							<li>形状: 方形</li>
-							<li>皮革材质: 真皮</li>
-							<li>真皮类型: 接触面真皮</li>
-							<li>是否可定制: 否</li>
-							<li>风格: 简约现代</li>
-							<li>产地: 广东省</li>
-							<li>城市: 佛山市</li>
-							<li>材质: 木</li>
-							<li>可送货/安装: 全部城市</li>
-							<div class="clear"></div>
-						</ul>
-					</dd>
-
-				</dl>
-
 				<div class="shenmin">
 					<p>
 						<b>安全提示：</b>交易中请勿使用阿里旺旺以外的聊天工具沟通，不要接收可疑文件和不要点击不明来源的链接，支付前核实好域名和支付详情。
@@ -245,25 +193,32 @@ return true;
 			<div class="clear"></div>
 		</div>
 	</div>
-	<div class="w1200">
-		<div class="bottom">
-			<a href="#">关于我们</a>|<a href="#">帮助中心</a>|<a href="#">法律声明</a>|<a
-				href="#">用户协议</a>|<a href="#">联系我们</a>|<a href="#">人才招聘</a>|<a
-				href="#">站点地图</a>
 
-			<p>
-				网络文化经营许可证：粤网文[2015]0295-065号<br />© 2015 深圳易易城科技网络有限公司.
-				粤ICP备15042543号
-			</p>
-			<p class="p02">
-				<img src="images/home/ico25.jpg" /><img src="images/home/ico26.jpg" /><img
-					src="images/home/ico27.jpg" /><img src="images/home/ico36.jpg" /><img
-					src="images/home/ico37.jpg" />
-			</p>
-		</div>
-	</div>
-	</div>
-
+<div class="footer">
+	<div class="f_bz">
+    	<div class="w1200">
+            <dl class="dl01">
+                <dt>正品保证</dt>
+                <dd>现摘鲜花 小鲜肉哟</dd>
+            </dl>
+            <dl class="dl02">
+                <dt>你消费 自己买单</dt>
+                <dd>除非长得帅 免单</dd>
+            </dl>
+            <dl class="dl03">
+                <dt>品类丰富</dt>
+                <dd>品类齐全 轻松购物</dd>
+            </dl>
+            <dl class="dl04">
+                <dt>立足长沙</dt>
+                <dd>为您呈现最鲜的鲜花</dd>
+            </dl>
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+    
+</div>
 
 	<script type="text/javascript">
   $(function(){
@@ -298,7 +253,7 @@ function goumai(count,fid,user){
 		url : "${APP_PATH}/buyOne",
 		type : "GET",
 		data :{"fid":fid,'fcount':quantity},
-       success : function(result) {
+        success : function(result) {
 	    console.log(result);					
 	    window.location.href="view/info.jsp";
 		     } 

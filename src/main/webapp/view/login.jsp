@@ -18,7 +18,6 @@
 			<a href="#"></a>
 		</div>
 		<div class="font-d">欢迎登陆</div>
-	
 
 			<div class="search">
 				<form action="${APP_PATH }/showFlowers" class="form">
@@ -28,9 +27,8 @@
 						value="搜索" class="sub" />
 				</form>
 				<p>
-					<a href="${APP_PATH }/birth">生日</a>|<a href="${APP_PATH }/wedding">婚礼</a>|<a href="${APP_PATH }/blessing">祝福</a>|
-						<a href="${APP_PATH }/love">爱意表达</a>|<a href="${APP_PATH }/friendShop">友情</a>|<a
-						href="${APP_PATH }/yearMemory">周年纪念</a>
+					<a href="${APP_PATH }/showFlowers?&&ftid=2">生日</a>|<a href="${APP_PATH }/showFlowers?&&ftid=3">婚礼</a>|<a href="${APP_PATH }/showFlowers?&&ftid=4">祝福</a>|
+						<a href="${APP_PATH }/showFlowers?&&ftid=6">友情</a>|<a href="${APP_PATH }/showFlowers?&&ftid=6">周年纪念</a>
 				</p>
 			</div>
 		<div class="s_r">
@@ -70,16 +68,6 @@
 		</div>
 	</div>
 
-	<div class="bottom">
-		<a href="#">关于我们</a>|<a href="#">帮助中心</a>|<a href="#">法律声明</a>|<a
-			href="#">用户协议</a>|<a href="#">联系我们</a>|<a href="#">人才招聘</a>|<a
-			href="#">站点地图</a>
-
-		<p>
-			网络文化经营许可证：粤网文[2015]0295-065号<br />© 2015 深圳易易城科技网络有限公司.
-			粤ICP备15042543号
-		</p>
-	</div>
 </body>
 
 <script type="text/javascript">
@@ -119,4 +107,6 @@
 
 	});
 </script>
+
+
 </html>

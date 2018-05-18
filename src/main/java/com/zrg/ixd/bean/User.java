@@ -1,7 +1,18 @@
 package com.zrg.ixd.bean;
 
-public class User {
-    @Override
+import java.io.Serializable;
+
+public class User implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
+
+
+	@Override
 	public String toString() {
 		return "User [uid=" + uid + ", uname=" + uname + ", upwd=" + upwd + ", email=" + email + ", sex=" + sex
 				+ ", phone=" + phone + ", state=" + state + ", utype=" + utype + ", uimg=" + uimg + "]";

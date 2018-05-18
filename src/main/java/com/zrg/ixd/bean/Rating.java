@@ -1,7 +1,14 @@
 package com.zrg.ixd.bean;
 
-public class Rating {
-    private Integer rid;
+import java.io.Serializable;
+
+public class Rating implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer rid;
 
     private Integer fid;
 
